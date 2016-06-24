@@ -1,13 +1,14 @@
 import React from 'react'
 import Remarkable from 'remarkable'
 
-const Comment = React.createClass({
-  rawMarkup: function() {
+class Comment extends React.Component {
+  rawMarkup() {
     const md = new Remarkable();
     const rawMarkup = md.render(this.props.children.toString());
     return { __html: rawMarkup };
-  },
-  render: function() {
+  }
+
+  render() {
     return(
       <div className="comment">
         <h4 className="comment-author">
@@ -17,10 +18,10 @@ const Comment = React.createClass({
       </div>
     )
   }
-})
+}
 
-const CommentsList = React.createClass({
-  render: function() {
+class CommentsList extends React.Component {
+  render() {
     const commentNodes = this.props.data.map((comment, id) => {
       return (
         <Comment author={comment.author} key={id}>
@@ -34,10 +35,10 @@ const CommentsList = React.createClass({
       </div>
     )
   }
-})
+}
 
-const CommentsForm = React.createClass({
-  render: () => {
+class CommentsForm extends React.Component {
+  render() {
     return(
       <form className="commentForm" action="/comments" method="post">
         <input type="text" placeholder="Your name" name="author"/>
@@ -46,10 +47,10 @@ const CommentsForm = React.createClass({
       </form>
     )
   }
-})
+}
 
-const CommentsComponent = React.createClass({
-  render: function() {
+class CommentsComponent extends React.Component {
+  render() {
     return(
       <div className="comments">
         <CommentsList data={this.props.data} />
@@ -57,6 +58,6 @@ const CommentsComponent = React.createClass({
       </div>
     )
   }
-})
+}
 
 module.exports = CommentsComponent
