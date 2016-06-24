@@ -12,16 +12,14 @@ const port = 3000
 var comments = []
 
 app.get("/", (req, res) => {
-  const element = <CommentsComponent data={comments} />
-  res.send(ReactDOMServer.renderToString(element))
+  res.send(ReactDOMServer.renderToString(<CommentsComponent data={comments} />))
 })
 
 app.post("/comments", (req, res) => {
   const body = req.body
   comments.push({author: body.author, text: body.text})
 
-  const element = <CommentsComponent data={comments} />
-  res.send(ReactDOMServer.renderToString(element))
+  res.send(ReactDOMServer.renderToString(<CommentsComponent data={comments} />))
 })
 
 app.listen(port, () => {
