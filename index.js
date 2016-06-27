@@ -11,7 +11,7 @@ const port = 3000
 
 var comments = []
 
-app.get("/", (req, res) => {
+app.get("/comments", (req, res) => {
   res.send(ReactDOMServer.renderToString(<CommentsComponent data={comments} />))
 })
 
